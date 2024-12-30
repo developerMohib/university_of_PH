@@ -7,13 +7,14 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "ts-node-dev --respawn --transpile-only server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only server.ts",
     "format": "prettier --ignore-path .gitignore --write \"src/**/*.{js,ts}\""
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
