@@ -1,13 +1,14 @@
 {
   "name": "universitymanagement",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix",
-    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --ignore-path .gitignore --write \"src/**/*.{js,ts}\""
   },
   "author": "",

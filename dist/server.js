@@ -12,18 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const config_1 = __importDefault(require("./config"));
 const index_1 = __importDefault(require("./index"));
-const port = 5000;
+const port = config_1.default.port;
 // server run function
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             index_1.default.listen(port, () => {
-                console.log(`Example app listening on port ${port}`);
+                console.log(`University Management server listening on port ${port} 🏃🏃`);
             });
         }
         catch (error) {
-            console.log(error);
+            console.error(`Failed to start the server: ${error}`);
+            process.exit(1);
         }
     });
 }
