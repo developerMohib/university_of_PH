@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import path from 'path';
+import { globalErrorHandler } from './utils/errorHandler';
 
 // Create an instance of the Express application
 const app: Application = express();
@@ -32,4 +33,7 @@ app.all('*', (req: Request, res: Response): void => {
     message: 'This is not a valid route 🤦‍♀️🤷‍♂️',
   });
 });
+
+app.use(globalErrorHandler)
+
 export default app;

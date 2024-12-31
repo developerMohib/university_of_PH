@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
+const errorHandler_1 = require("./utils/errorHandler");
 // Create an instance of the Express application
 const app = (0, express_1.default)();
 // To parse incoming JSON requests
@@ -30,4 +31,5 @@ app.all('*', (req, res) => {
         message: 'This is not a valid route 🤦‍♀️🤷‍♂️',
     });
 });
+app.use(errorHandler_1.globalErrorHandler);
 exports.default = app;
