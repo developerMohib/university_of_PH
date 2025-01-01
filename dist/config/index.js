@@ -8,5 +8,6 @@ const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({ path: path_1.default.join(process.cwd(), '.env') });
 const config = {
     port: process.env.PORT ? parseInt(process.env.PORT, 10) : undefined,
+    database_URL: process.env.MONGO_DB_URL,
 };
 exports.default = config;

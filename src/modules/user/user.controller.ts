@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import { TUser } from './user.interface';
-import { createUserIntoDB } from './user.services';
+import { createUserIntoDB, getAlluserFromDB } from './user.services';
 import { userSchemaValidation } from './user.validation';
 
 // create a user
 const createUserController = async (
   req: Request,
   res: Response,
-  next : NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     // here code i have to write
@@ -17,7 +17,7 @@ const createUserController = async (
     if (!userValidData) {
       res.status(400).json({
         success: false,
-        message: 'Student data is required',
+        message: 'User data is required',
       });
       return;
     }
@@ -27,11 +27,32 @@ const createUserController = async (
     res.status(200).json({
       success: true,
       message: 'User created successfully',
-      data : newUser,
+      data: newUser,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
-export { createUserController };
+// get all users
+const getAllUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    // here all code
+    const result = await getAlluserFromDB();
+    res.status(200).json({
+      success: true,
+      message: 'User created successfully',
+      data: result,
+    });
+
+    
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { createUserController, getAllUserController };

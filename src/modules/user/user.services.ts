@@ -1,7 +1,9 @@
-import { CustomError, TUser } from './user.interface';
+import { TUser } from './user.interface';
 import { User } from './user.schema';
 
-const createUserIntoDB = async (userData: TUser): Promise<TUser | null> => {
+const createUserIntoDB = async (
+  userData: TUser,
+): Promise<TUser | undefined> => {
   try {
     //   const result = await Student.create(studenData);  // custom mathod
     const newUser = new User(userData);
@@ -12,11 +14,21 @@ const createUserIntoDB = async (userData: TUser): Promise<TUser | null> => {
 
     // Save the new student if it doesn't exist
     const result = await newUser.save();
-
     return result;
-  } catch (error ) {
-    console.log(error)
+  } catch (error) {
+    console.log(error);
   }
 };
 
-export { createUserIntoDB };
+// get all users
+const getAlluserFromDB = async () => {
+  try {
+    // here get
+    const result = await User.find();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { createUserIntoDB, getAlluserFromDB };

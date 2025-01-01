@@ -12,6 +12,9 @@ const userSchema = new Schema<TUser>({
     default: 'in-progress',
   },
   isDeleted: { type: Boolean, default: false },
+},
+{
+  timestamps : true ,
 });
 
 //  Create a Model.

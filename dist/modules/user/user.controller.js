@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUserController = void 0;
+exports.getAllUserController = exports.createUserController = void 0;
 const user_services_1 = require("./user.services");
 const user_validation_1 = require("./user.validation");
 // create a user
@@ -21,7 +21,7 @@ const createUserController = (req, res, next) => __awaiter(void 0, void 0, void 
         if (!userValidData) {
             res.status(400).json({
                 success: false,
-                message: 'Student data is required',
+                message: 'User data is required',
             });
             return;
         }
@@ -38,3 +38,19 @@ const createUserController = (req, res, next) => __awaiter(void 0, void 0, void 
     }
 });
 exports.createUserController = createUserController;
+// get all users
+const getAllUserController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // here all code
+        const result = yield (0, user_services_1.getAlluserFromDB)();
+        res.status(200).json({
+            success: true,
+            message: 'User created successfully',
+            data: result,
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.getAllUserController = getAllUserController;

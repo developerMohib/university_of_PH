@@ -13,6 +13,8 @@ const userSchema = new mongoose_1.Schema({
         default: 'in-progress',
     },
     isDeleted: { type: Boolean, default: false },
+}, {
+    timestamps: true,
 });
 //  Create a Model.
 const User = (0, mongoose_1.model)('User', userSchema);

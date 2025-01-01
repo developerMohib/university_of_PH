@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUserIntoDB = void 0;
+exports.getAlluserFromDB = exports.createUserIntoDB = void 0;
 const user_schema_1 = require("./user.schema");
 const createUserIntoDB = (userData) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -27,3 +27,15 @@ const createUserIntoDB = (userData) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.createUserIntoDB = createUserIntoDB;
+// get all users
+const getAlluserFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // here get
+        const result = yield user_schema_1.User.find();
+        return result;
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.getAlluserFromDB = getAlluserFromDB;

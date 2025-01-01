@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = __importDefault(require("./config"));
 const index_1 = __importDefault(require("./index"));
 const port = config_1.default.port;
@@ -19,6 +20,8 @@ const port = config_1.default.port;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            yield mongoose_1.default.connect(config_1.default.database_URL);
+            console.log('Database connected successfully.🤞');
             index_1.default.listen(port, () => {
                 console.log(`University Management server listening on port ${port} 🏃🏃`);
             });
