@@ -9,5 +9,7 @@ dotenv_1.default.config({ path: path_1.default.join(process.cwd(), '.env') });
 const config = {
     port: process.env.PORT ? parseInt(process.env.PORT, 10) : undefined,
     database_URL: process.env.MONGO_DB_URL,
+    default_pass: process.env.DEFAULT_PASS,
+    bycrypt_rounds: process.env.BYCRYPT_SALT_ROUNDS,
 };
 exports.default = config;
