@@ -5,18 +5,19 @@ export interface IUserName {
 }
 
 export interface IGuardian {
-  fatherName : string,
-  fatherContact : string,
-  fatherProffession: string,
-  motherName : string,
-  motherContact : string,
-  motherProffession: string,
+  fatherName: string;
+  fatherContact: string;
+  fatherProfession: string;
+  motherName: string;
+  motherContact: string;
+  motherProfession: string;
 }
+
 export interface ILocalGuardian {
-  name : string,
-  occupassion : string,
-  contactNo: string,
-  address : string,
+  name: string;
+  occupation: string;
+  contactNo: string;
+  address: string;
 }
 
 export interface IStudent {
@@ -27,13 +28,13 @@ export interface IStudent {
   image?: string | null;
   gender: 'Male' | 'Female' | 'other';
   contactNo: string;
-  emargencyContact: string;
+  emergencyContact: string;
   birthDate?: string | null;
-  bloodGroup: 'A+' | 'B+' | 'A-' | 'B-' | 'AB+' | 'AB+' | 'O+' | 'O-';
+  bloodGroup: 'A+' | 'B+' | 'A-' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress?: string | null;
   permanentAddress: string;
-  gurdian: IGuardian;
-  localGurdian: ILocalGuardian;
-  status: 'In-progess' | 'Blocked';
+  guardian: IGuardian;
+  localGuardian: ILocalGuardian;
+  status: 'In-progress' | 'Blocked';
   isDeleted: boolean;
 }
