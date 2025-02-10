@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.studentModel = void 0;
 const mongoose_1 = require("mongoose");
 const nameSchema = new mongoose_1.Schema({
     firstName: {
@@ -14,6 +15,55 @@ const nameSchema = new mongoose_1.Schema({
     lastName: {
         type: String,
         required: [true, 'Last is required'],
+    },
+});
+const guardianSchema = new mongoose_1.Schema({
+    fatherName: {
+        type: String,
+        required: [true, 'Father name is required'],
+        trim: true,
+    },
+    fatherContact: {
+        type: String,
+        required: true,
+        trim: true,
+        match: [/^\d{11}$/, 'Please number will be 11'],
+    },
+    fatherProfession: {
+        type: String,
+    },
+    motherContact: {
+        type: String,
+        trim: true,
+        match: [/^\d{11}$/, 'Please number will be 11'],
+    },
+    motherName: {
+        type: String,
+        trim: true,
+    },
+    motherProfession: {
+        type: String,
+        trim: true,
+    },
+});
+const localGuardianSchema = new mongoose_1.Schema({
+    name: {
+        type: String,
+        required: [true, 'Local guardian name is required'],
+        trim: true,
+    },
+    address: {
+        type: String,
+        required: [true, 'local guardian address is required'],
+    },
+    contactNo: {
+        type: String,
+        required: true,
+        trim: true,
+        match: [/^\d{11}$/, 'Please number will be 11'],
+    },
+    occupation: {
+        type: String,
     },
 });
 const studentSchema = new mongoose_1.Schema({
@@ -76,5 +126,8 @@ const studentSchema = new mongoose_1.Schema({
         type: String,
         enum: ['In-progress', 'Blocked'],
     },
+    guardian: guardianSchema,
+    localGuardian: localGuardianSchema,
     isDeleted: { type: Boolean, default: false },
 });
+exports.studentModel = (0, mongoose_1.model)('student', studentSchema);
