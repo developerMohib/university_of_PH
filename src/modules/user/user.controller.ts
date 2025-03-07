@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { TUser } from './user.interface';
 import { createUserIntoDB, getAlluserFromDB } from './user.services';
 import { userSchemaValidation } from './user.validation';
 
@@ -10,20 +9,21 @@ const createUserController = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    // here code i have to write
-    const { userData }: { userData: TUser } = req.body;
-    const userValidData = userSchemaValidation.parse(userData);
+   
+    const {password, userData }= req.body;
 
-    if (!userValidData) {
-      res.status(400).json({
-        success: false,
-        message: 'User data is required',
-      });
-      return;
-    }
+    // const userValidData = userSchemaValidation.parse();
+    // if (!userValidData) {
+    //   res.status(400).json({
+    //     success: false,
+    //     message: 'User data is required',
+    //   });
+    //   return;
+    // }
 
     // new user
-    const newUser = createUserIntoDB(userValidData);
+    const newUser = createUserIntoDB(password,userData);
+    console.log('26',newUser)
     res.status(200).json({
       success: true,
       message: 'User created successfully',

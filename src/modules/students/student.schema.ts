@@ -4,6 +4,8 @@ import {
   ILocalGuardian,
   IStudent,
   IUserName,
+  StudentMethods,
+  StudentModel,
 } from './student.interface';
 
 const nameSchema = new Schema<IUserName>({
@@ -73,11 +75,17 @@ const localGuardianSchema = new Schema<ILocalGuardian>({
   },
 });
 
-const studentSchema = new Schema<IStudent>({
+const studentSchema = new Schema<IStudent, StudentModel, StudentMethods>({
   id: {
     type: String,
     required: [true, 'id is mendatory'],
     unique: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: [true, 'User id is required!'],
+    unique: true,
+    ref : 'User',
   },
   password: {
     type: String,
@@ -99,19 +107,17 @@ const studentSchema = new Schema<IStudent>({
   },
   gender: {
     type: String,
-    enum: ['Male', 'Female', 'other'],
+    enum: ['Male', 'Female', 'Other'],
     required: true,
   },
   contactNo: {
     type: String,
     trim: true,
-    unique: true,
     required: [true, 'Please porvide contact'],
   },
   emergencyContact: {
     type: String,
     trim: true,
-    unique: true,
     required: [true, 'Please porvide another contact'],
   },
   birthDate: {
@@ -129,14 +135,21 @@ const studentSchema = new Schema<IStudent>({
     type: String,
     trim: true,
   },
-  status: {
-    type: String,
-    enum: ['In-progress', 'Blocked'],
+  guardian: {
+    type: guardianSchema,
+    required: [true, 'Guardian details is required'],
   },
-  guardian: guardianSchema,
-  localGuardian: localGuardianSchema,
+  localGuardian: {
+    type: localGuardianSchema,
+    required: [true, 'Local guardian details is required'],
+  },
 
   isDeleted: { type: Boolean, default: false },
 });
 
-export const studentModel = model<IStudent>('student', studentSchema);
+studentSchema.methods.isExistStudent = async function (id: string) {
+  const existingStudent = await Student.findOne({ id });
+  return existingStudent;
+};
+
+export const Student = model<IStudent, StudentModel>('student', studentSchema);

@@ -11,22 +11,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllUserController = exports.createUserController = void 0;
 const user_services_1 = require("./user.services");
-const user_validation_1 = require("./user.validation");
 // create a user
 const createUserController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // here code i have to write
-        const { userData } = req.body;
-        const userValidData = user_validation_1.userSchemaValidation.parse(userData);
-        if (!userValidData) {
-            res.status(400).json({
-                success: false,
-                message: 'User data is required',
-            });
-            return;
-        }
+        const { password, userData } = req.body;
+        // const userValidData = userSchemaValidation.parse();
+        // if (!userValidData) {
+        //   res.status(400).json({
+        //     success: false,
+        //     message: 'User data is required',
+        //   });
+        //   return;
+        // }
         // new user
-        const newUser = (0, user_services_1.createUserIntoDB)(userValidData);
+        const newUser = (0, user_services_1.createUserIntoDB)(password, userData);
+        console.log('26', newUser);
         res.status(200).json({
             success: true,
             message: 'User created successfully',

@@ -1,9 +1,9 @@
-import { studentModel } from './student.schema';
+import { Student } from './student.schema';
 
 const getAllStudentFromDB = async () => {
   try {
     // here your code
-    const result = await studentModel.find();
+    const result = await Student.find();
     return result;
   } catch (error) {
     console.log(error);
@@ -12,7 +12,7 @@ const getAllStudentFromDB = async () => {
 const getOneStudentFromDB = async (id: string) => {
   try {
     // here your code
-    const result = await studentModel.findOne({id});
+    const result = await Student.findOne({id});
     return result;
   } catch (error) {
     console.log(error);

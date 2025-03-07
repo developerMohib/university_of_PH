@@ -14,7 +14,7 @@ const student_schema_1 = require("./student.schema");
 const getAllStudentFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // here your code
-        const result = yield student_schema_1.studentModel.find();
+        const result = yield student_schema_1.Student.find();
         return result;
     }
     catch (error) {
@@ -25,7 +25,7 @@ exports.getAllStudentFromDB = getAllStudentFromDB;
 const getOneStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // here your code
-        const result = yield student_schema_1.studentModel.findOne({ id });
+        const result = yield student_schema_1.Student.findOne({ id });
         return result;
     }
     catch (error) {

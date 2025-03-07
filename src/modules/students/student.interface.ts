@@ -1,3 +1,4 @@
+import { Model, Types } from "mongoose";
 
 export interface IUserName {
   firstName: string;
@@ -24,10 +25,11 @@ export interface ILocalGuardian {
 export interface IStudent {
   id: string;
   name: IUserName;
-  password: string;
+  user: Types.ObjectId;
+  password?: string | undefined;
   email: string;
   image?: string | null;
-  gender: 'Male' | 'Female' | 'other';
+  gender: 'Male' | 'Female' | 'Other';
   contactNo: string;
   emergencyContact: string;
   birthDate?: string | null;
@@ -36,6 +38,12 @@ export interface IStudent {
   permanentAddress: string;
   guardian: IGuardian;
   localGuardian: ILocalGuardian;
-  status: 'In-progress' | 'Blocked';
   isDeleted: boolean;
 }
+
+export interface StudentMethods {
+  isExistStudent(id: string): Promise<IStudent | null>;
+}
+
+// Create a new Model type that knows about IUserMethods...
+export type StudentModel = Model<IStudent, object, StudentMethods>;
