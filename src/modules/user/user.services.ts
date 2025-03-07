@@ -26,16 +26,10 @@ const createUserIntoDB = async (password: string, studentData: IStudent) => {
 
     // Save the new student if it doesn't exist
     const result = await User.create(userData);
-    console.log('result u ser',result)
-    console.log('Type of result:', typeof result);
-    console.log('Object.keys(result).length:', Object.keys(result)?.length);
-
     if (Object.keys(result)?.length) {
       userData.id = result.id;
       studentData.user = result._id;
-
       const newStudent = await Student.create(studentData);
-      console.log('newStudent u ser',newStudent)
       return newStudent;
     }
   } catch (error) {

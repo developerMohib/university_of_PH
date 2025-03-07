@@ -17,7 +17,7 @@ const config_1 = __importDefault(require("../../config"));
 const student_schema_1 = require("../students/student.schema");
 const user_schema_1 = require("./user.schema");
 const createUserIntoDB = (password, studentData) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b;
+    var _a;
     try {
         //: Promise<IStudent | undefined>
         // create a user object into db
@@ -37,14 +37,10 @@ const createUserIntoDB = (password, studentData) => __awaiter(void 0, void 0, vo
         userData.id = '2030100001';
         // Save the new student if it doesn't exist
         const result = yield user_schema_1.User.create(userData);
-        console.log('result u ser', result);
-        console.log('Type of result:', typeof result);
-        console.log('Object.keys(result).length:', (_a = Object.keys(result)) === null || _a === void 0 ? void 0 : _a.length);
-        if ((_b = Object.keys(result)) === null || _b === void 0 ? void 0 : _b.length) {
+        if ((_a = Object.keys(result)) === null || _a === void 0 ? void 0 : _a.length) {
             userData.id = result.id;
             studentData.user = result._id;
             const newStudent = yield student_schema_1.Student.create(studentData);
-            console.log('newStudent u ser', newStudent);
             return newStudent;
         }
     }

@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllUserController = exports.createUserController = void 0;
 const user_services_1 = require("./user.services");
+// import { userSchemaValidation } from './user.validation';
 // create a user
 const createUserController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,8 +25,8 @@ const createUserController = (req, res, next) => __awaiter(void 0, void 0, void 
         //   return;
         // }
         // new user
-        const newUser = (0, user_services_1.createUserIntoDB)(password, userData);
-        console.log('26', newUser);
+        const newUser = yield (0, user_services_1.createUserIntoDB)(password, userData);
+        console.log('26 is pending in user cont', newUser);
         res.status(200).json({
             success: true,
             message: 'User created successfully',

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { createUserIntoDB, getAlluserFromDB } from './user.services';
-import { userSchemaValidation } from './user.validation';
+// import { userSchemaValidation } from './user.validation';
 
 // create a user
 const createUserController = async (
@@ -22,8 +22,8 @@ const createUserController = async (
     // }
 
     // new user
-    const newUser = createUserIntoDB(password,userData);
-    console.log('26',newUser)
+    const newUser = await createUserIntoDB(password,userData);
+    console.log('26 is pending in user cont',newUser)
     res.status(200).json({
       success: true,
       message: 'User created successfully',
