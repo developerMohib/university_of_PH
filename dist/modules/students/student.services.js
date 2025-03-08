@@ -18,7 +18,7 @@ const getAllStudentFromDB = () => __awaiter(void 0, void 0, void 0, function* ()
         return result;
     }
     catch (error) {
-        console.log(error);
+        throw new error;
     }
 });
 exports.getAllStudentFromDB = getAllStudentFromDB;
@@ -29,7 +29,7 @@ const getOneStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* 
         return result;
     }
     catch (error) {
-        console.log(error);
+        throw new error;
     }
 });
 exports.getOneStudentFromDB = getOneStudentFromDB;

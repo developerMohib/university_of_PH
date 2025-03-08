@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import path from 'path';
 import { globalErrorHandler } from './utils/errorHandler';
-import { userRouter } from './modules/user/user.route';
+import { router } from './route/route';
 
 // Create an instance of the Express application
 const app: Application = express();
@@ -15,7 +15,7 @@ app.use(cors());
 
 
 // Here is my routes
-app.use('/api/v1/users',userRouter)
+app.use('/api/v1',router)
 
 
 // server static files

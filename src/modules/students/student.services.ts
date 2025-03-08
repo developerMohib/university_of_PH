@@ -5,8 +5,8 @@ const getAllStudentFromDB = async () => {
     // here your code
     const result = await Student.find();
     return result;
-  } catch (error) {
-    console.log(error);
+  } catch (error : any) {
+    throw new error
   }
 };
 const getOneStudentFromDB = async (id: string) => {
@@ -14,8 +14,8 @@ const getOneStudentFromDB = async (id: string) => {
     // here your code
     const result = await Student.findOne({id});
     return result;
-  } catch (error) {
-    console.log(error);
+  } catch (error : any) {
+    throw new error
   }
 };
 
