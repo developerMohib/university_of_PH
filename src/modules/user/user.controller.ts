@@ -20,7 +20,7 @@ const createUserController = async (
       });
       return;
     }
-
+    
     // new user
     const newUser = await createUserIntoDB(password,userData);
     res.status(200).json({

@@ -87,10 +87,6 @@ const studentSchema = new Schema<IStudent, StudentModel, StudentMethods>({
     unique: true,
     ref : 'User',
   },
-  password: {
-    type: String,
-    required: [true, 'password id require'],
-  },
   name: {
     type: nameSchema,
     required: [true, 'name is required'],

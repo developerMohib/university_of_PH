@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAlluserFromDB = exports.createUserIntoDB = void 0;
 const config_1 = __importDefault(require("../../config"));
+const authHashPass_1 = require("../../middleware/authHashPass");
 const student_schema_1 = require("../students/student.schema");
 const user_schema_1 = require("./user.schema");
 const createUserIntoDB = (password, studentData) => __awaiter(void 0, void 0, void 0, function* () {
@@ -21,32 +22,29 @@ const createUserIntoDB = (password, studentData) => __awaiter(void 0, void 0, vo
     try {
         //: Promise<IStudent | undefined>
         // create a user object into db
-        const userData = {};
         //   const result = await Student.create(studenData);  // custom mathod
-        // const newUser = new User(userData);
-        //   if (await newStudent.isExistStudent(studentData.id)) {
-        //     throw new Error('This student already exists');
-        //   }
-        userData.password = password || config_1.default.default_pass;
-        // if(!password){
-        //   user.password = config.default_pass as string;
-        // }else{
-        //   user.password = password
+        // if (await newStudent.isExistStudent(studentData.id)) {
+        //   throw new Error('This student already exists');
         // }
-        userData.role = 'student';
-        userData.id = '2030100001';
+        const hashedPassword = yield (0, authHashPass_1.hashPassword)(password || config_1.default.default_pass);
+        const userData = {
+            password: hashedPassword,
+            role: 'student',
+            id: '2030100001',
+        };
         // Save the new student if it doesn't exist
         const result = yield user_schema_1.User.create(userData);
         if ((_a = Object.keys(result)) === null || _a === void 0 ? void 0 : _a.length) {
-            userData.id = result.id;
+            studentData.id = result.id;
             studentData.user = result._id;
             const newStudent = yield student_schema_1.Student.create(studentData);
             return newStudent;
         }
     }
     catch (error) {
-        console.log(error);
-        return undefined;
+        console.log(36, "34", error);
+        throw error;
+        ;
     }
 });
 exports.createUserIntoDB = createUserIntoDB;

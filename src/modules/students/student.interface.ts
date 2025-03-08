@@ -26,7 +26,6 @@ export interface IStudent {
   id: string;
   name: IUserName;
   user: Types.ObjectId;
-  password?: string | undefined;
   email: string;
   image?: string | null;
   gender: 'Male' | 'Female' | 'Other';
