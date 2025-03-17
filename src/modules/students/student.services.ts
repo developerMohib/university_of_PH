@@ -18,5 +18,14 @@ const getOneStudentFromDB = async (id: string) => {
     throw new error
   }
 };
+const deleteStudentFromDB = async (id: string) => {
+  try {
+    // here your code
+    const result = await Student.updateOne({id},{isDeleted:true});
+    return result;
+  } catch (error : any) {
+    throw new error
+  }
+};
 
-export { getAllStudentFromDB ,getOneStudentFromDB};
+export { getAllStudentFromDB ,getOneStudentFromDB,deleteStudentFromDB};

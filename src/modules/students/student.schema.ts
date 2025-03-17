@@ -98,7 +98,7 @@ const studentSchema = new Schema<IStudent, StudentModel, StudentMethods>({
     unique: true,
     match: [/^\S+@\S+\.\S+$/, 'invalid email format'],
   },
-  image: {
+  profileImage: {
     type: String,
   },
   gender: {
@@ -139,7 +139,10 @@ const studentSchema = new Schema<IStudent, StudentModel, StudentMethods>({
     type: localGuardianSchema,
     required: [true, 'Local guardian details is required'],
   },
-
+addmissionSemister : {
+  type :Schema.Types.ObjectId,
+  ref: 'AcademicSemester',
+},
   isDeleted: { type: Boolean, default: false },
 });
 
