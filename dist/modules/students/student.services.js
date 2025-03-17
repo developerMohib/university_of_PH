@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOneStudentFromDB = exports.getAllStudentFromDB = void 0;
+exports.deleteStudentFromDB = exports.getOneStudentFromDB = exports.getAllStudentFromDB = void 0;
 const student_schema_1 = require("./student.schema");
 const getAllStudentFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -33,3 +33,14 @@ const getOneStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.getOneStudentFromDB = getOneStudentFromDB;
+const deleteStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // here your code
+        const result = yield student_schema_1.Student.updateOne({ id }, { isDeleted: true });
+        return result;
+    }
+    catch (error) {
+        throw new error;
+    }
+});
+exports.deleteStudentFromDB = deleteStudentFromDB;

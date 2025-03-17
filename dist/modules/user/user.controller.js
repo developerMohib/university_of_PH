@@ -11,45 +11,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllUserController = exports.createUserController = void 0;
 const user_services_1 = require("./user.services");
-const user_validation_1 = require("./user.validation");
+const catchAsync_1 = require("../../utils/catchAsync");
 // create a user
-const createUserController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { password, userData } = req.body;
-        const userValidData = user_validation_1.userSchemaValidation.parse(userData);
-        if (!userValidData) {
-            res.status(400).json({
-                success: false,
-                message: 'User data is required',
-            });
-            return;
-        }
-        // new user
-        const newUser = yield (0, user_services_1.createUserIntoDB)(password, userData);
-        res.status(200).json({
-            success: true,
-            message: 'User created successfully',
-            data: newUser,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
-});
+const createUserController = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { password, studentData } = req.body;
+    // new user as a student
+    const newUser = yield (0, user_services_1.createUserIntoDB)(password, studentData);
+    res.status(200).json({
+        success: true,
+        message: 'User created successfully',
+        data: newUser,
+    });
+}));
 exports.createUserController = createUserController;
 // get all users
-const getAllUserController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        // here all code
-        const result = yield (0, user_services_1.getAlluserFromDB)();
-        res.status(200).json({
-            success: true,
-            message: 'User created successfully',
-            data: result,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
-});
+const getAllUserController = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield (0, user_services_1.getAlluserFromDB)();
+    res.status(200).json({
+        success: true,
+        message: 'User created successfully',
+        data: result,
+    });
+}));
 exports.getAllUserController = getAllUserController;

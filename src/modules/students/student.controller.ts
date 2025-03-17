@@ -6,7 +6,7 @@ import {
 } from './student.services';
 import { catchAsync } from '../../utils/catchAsync';
 
-const getOneStudentController = catchAsync(async (req, res, next) => {
+const getOneStudentController = catchAsync(async (req, res) => {
   const { studentId } = req.params;
   if (!studentId) {
     res.status(400).json({
@@ -32,7 +32,7 @@ const getOneStudentController = catchAsync(async (req, res, next) => {
 });
 
 const getAllStudentController: RequestHandler = catchAsync(
-  async (req, res, next) => {
+  async (req, res) => {
     const result = await getAllStudentFromDB();
     res.status(200).json({
       success: true,
@@ -43,7 +43,7 @@ const getAllStudentController: RequestHandler = catchAsync(
 );
 
 const deleteStudentController: RequestHandler = catchAsync(
-  async (req, res, next) => {
+  async (req, res) => {
     const { studentId } = req.params;
     const result = await deleteStudentFromDB(studentId);
     res.status(200).json({

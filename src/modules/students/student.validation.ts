@@ -31,25 +31,29 @@ const localGuardianSchema = z.object({
   occupation: z.string().optional(),
 });
 
-const studentValidationSchema = z.object({
-  id: z.string().min(1, 'ID is mandatory').trim(),
-  password: z.string().min(1, 'Password is required').trim(),
-  name: nameSchema,
-  email: z.string().email('Invalid email format').trim(),
-  image: z.string().optional(),
-  gender: z.enum(['Male', 'Female', 'other']),
-  contactNo: z.string().min(1, 'Please provide contact').trim(),
-  emergencyContact: z.string().min(1, 'Please provide another contact').trim(),
-  birthDate: z.string().optional(),
-  bloodGroup: z
-    .enum(['A+', 'A-', 'B+', 'B-', 'AB-', 'AB+', 'O+', 'O-'])
-    .optional(),
-  permanentAddress: z.string().optional(),
-  presentAddress: z.string().optional(),
-  status: z.enum(['In-progress', 'Blocked']).optional(),
-  guardian: guardianSchema,
-  localGuardian: localGuardianSchema,
-  isDeleted: z.boolean().default(false),
+const createStudentValidationSchema = z.object({
+  body: z.object({
+    password: z.string().min(1, 'Password is required').trim(),
+    studentData: z.object({
+      name: nameSchema,
+      email: z.string().email('Invalid email format').trim(),
+      image: z.string().optional(),
+      gender: z.enum(['Male', 'Female', 'other']),
+      contactNo: z.string().min(1, 'Please provide contact').trim(),
+      emergencyContact: z
+        .string()
+        .min(1, 'Please provide another contact')
+        .trim(),
+      birthDate: z.string().optional(),
+      bloodGroup: z
+        .enum(['A+', 'A-', 'B+', 'B-', 'AB-', 'AB+', 'O+', 'O-'])
+        .optional(),
+      presentAddress: z.string().optional(),
+      permanentAddress: z.string().optional(),
+      guardian: guardianSchema,
+      localGuardian: localGuardianSchema,
+    }),
+  }),
 });
 
-export { studentValidationSchema };
+export { createStudentValidationSchema };

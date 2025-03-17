@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.studentValidationSchema = void 0;
+exports.createStudentValidationSchema = void 0;
 const zod_1 = require("zod");
 const nameSchema = zod_1.z.object({
     firstName: zod_1.z.string().min(1, 'First Name is mandatory').trim(),
@@ -30,24 +30,28 @@ const localGuardianSchema = zod_1.z.object({
         .trim(),
     occupation: zod_1.z.string().optional(),
 });
-const studentValidationSchema = zod_1.z.object({
-    id: zod_1.z.string().min(1, 'ID is mandatory').trim(),
-    password: zod_1.z.string().min(1, 'Password is required').trim(),
-    name: nameSchema,
-    email: zod_1.z.string().email('Invalid email format').trim(),
-    image: zod_1.z.string().optional(),
-    gender: zod_1.z.enum(['Male', 'Female', 'other']),
-    contactNo: zod_1.z.string().min(1, 'Please provide contact').trim(),
-    emergencyContact: zod_1.z.string().min(1, 'Please provide another contact').trim(),
-    birthDate: zod_1.z.string().optional(),
-    bloodGroup: zod_1.z
-        .enum(['A+', 'A-', 'B+', 'B-', 'AB-', 'AB+', 'O+', 'O-'])
-        .optional(),
-    permanentAddress: zod_1.z.string().optional(),
-    presentAddress: zod_1.z.string().optional(),
-    status: zod_1.z.enum(['In-progress', 'Blocked']).optional(),
-    guardian: guardianSchema,
-    localGuardian: localGuardianSchema,
-    isDeleted: zod_1.z.boolean().default(false),
+const createStudentValidationSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        password: zod_1.z.string().min(1, 'Password is required').trim(),
+        studentData: zod_1.z.object({
+            name: nameSchema,
+            email: zod_1.z.string().email('Invalid email format').trim(),
+            image: zod_1.z.string().optional(),
+            gender: zod_1.z.enum(['Male', 'Female', 'other']),
+            contactNo: zod_1.z.string().min(1, 'Please provide contact').trim(),
+            emergencyContact: zod_1.z
+                .string()
+                .min(1, 'Please provide another contact')
+                .trim(),
+            birthDate: zod_1.z.string().optional(),
+            bloodGroup: zod_1.z
+                .enum(['A+', 'A-', 'B+', 'B-', 'AB-', 'AB+', 'O+', 'O-'])
+                .optional(),
+            presentAddress: zod_1.z.string().optional(),
+            permanentAddress: zod_1.z.string().optional(),
+            guardian: guardianSchema,
+            localGuardian: localGuardianSchema,
+        }),
+    }),
 });
-exports.studentValidationSchema = studentValidationSchema;
+exports.createStudentValidationSchema = createStudentValidationSchema;

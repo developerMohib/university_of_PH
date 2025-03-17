@@ -98,7 +98,7 @@ const studentSchema = new mongoose_1.Schema({
         unique: true,
         match: [/^\S+@\S+\.\S+$/, 'invalid email format'],
     },
-    image: {
+    profileImage: {
         type: String,
     },
     gender: {
@@ -138,6 +138,10 @@ const studentSchema = new mongoose_1.Schema({
     localGuardian: {
         type: localGuardianSchema,
         required: [true, 'Local guardian details is required'],
+    },
+    addmissionSemister: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'AcademicSemester',
     },
     isDeleted: { type: Boolean, default: false },
 });
