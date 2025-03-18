@@ -117,7 +117,7 @@ const studentSchema = new mongoose_1.Schema({
         required: [true, 'Please porvide another contact'],
     },
     birthDate: {
-        type: String,
+        type: Date,
     },
     bloodGroup: {
         type: String,
