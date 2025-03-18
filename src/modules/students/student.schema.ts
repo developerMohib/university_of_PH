@@ -117,7 +117,7 @@ const studentSchema = new Schema<IStudent, StudentModel, StudentMethods>({
     required: [true, 'Please porvide another contact'],
   },
   birthDate: {
-    type: String,
+    type: Date,
   },
   bloodGroup: {
     type: String,

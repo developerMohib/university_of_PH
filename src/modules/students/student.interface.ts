@@ -32,7 +32,7 @@ export interface IStudent {
   gender: 'Male' | 'Female' | 'Other';
   contactNo: string;
   emergencyContact: string;
-  birthDate?: string | null;
+  birthDate?: Date | null;
   bloodGroup: 'A+' | 'B+' | 'A-' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress?: string | null;
   permanentAddress: string;

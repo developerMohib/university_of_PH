@@ -44,7 +44,7 @@ const createStudentValidationSchema = z.object({
         .string()
         .min(1, 'Please provide another contact')
         .trim(),
-      birthDate: z.string().optional(),
+      birthDate: z.date().optional(),
       bloodGroup: z
         .enum(['A+', 'A-', 'B+', 'B-', 'AB-', 'AB+', 'O+', 'O-'])
         .optional(),
